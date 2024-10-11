@@ -33,6 +33,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             panel1 = new Panel();
+            CorteBtn = new Button();
+            TotalF = new Label();
+            label5 = new Label();
+            Total = new Label();
+            label4 = new Label();
             FACTURA = new Label();
             Bultos = new Label();
             label3 = new Label();
@@ -45,8 +50,7 @@
             BTN_CARGAR = new Button();
             Grid = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
-            label4 = new Label();
-            Total = new Label();
+            saveFileDialog1 = new SaveFileDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Grid).BeginInit();
             SuspendLayout();
@@ -67,6 +71,9 @@
             // panel1
             // 
             panel1.BackColor = Color.SteelBlue;
+            panel1.Controls.Add(CorteBtn);
+            panel1.Controls.Add(TotalF);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(Total);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(FACTURA);
@@ -85,6 +92,81 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1350, 96);
             panel1.TabIndex = 1;
+            // 
+            // CorteBtn
+            // 
+            CorteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CorteBtn.BackColor = SystemColors.ActiveCaptionText;
+            CorteBtn.FlatStyle = FlatStyle.Flat;
+            CorteBtn.ForeColor = Color.White;
+            CorteBtn.Location = new Point(1261, 1);
+            CorteBtn.Name = "CorteBtn";
+            CorteBtn.Size = new Size(89, 36);
+            CorteBtn.TabIndex = 14;
+            CorteBtn.Text = "Corte";
+            CorteBtn.UseVisualStyleBackColor = false;
+            CorteBtn.Visible = false;
+            CorteBtn.Click += CorteBtn_Click;
+            // 
+            // TotalF
+            // 
+            TotalF.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            TotalF.AutoSize = true;
+            TotalF.BackColor = Color.Transparent;
+            TotalF.FlatStyle = FlatStyle.Flat;
+            TotalF.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TotalF.Location = new Point(1174, 24);
+            TotalF.Name = "TotalF";
+            TotalF.Size = new Size(37, 35);
+            TotalF.TabIndex = 13;
+            TotalF.Text = "B";
+            TotalF.TextAlign = ContentAlignment.MiddleCenter;
+            TotalF.Visible = false;
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.FlatStyle = FlatStyle.Flat;
+            label5.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(932, 34);
+            label5.Name = "label5";
+            label5.Size = new Size(245, 25);
+            label5.TabIndex = 12;
+            label5.Text = "Facturas Restantes:";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            label5.Visible = false;
+            // 
+            // Total
+            // 
+            Total.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            Total.AutoSize = true;
+            Total.BackColor = Color.Transparent;
+            Total.FlatStyle = FlatStyle.Flat;
+            Total.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            Total.Location = new Point(1156, 59);
+            Total.Name = "Total";
+            Total.Size = new Size(37, 35);
+            Total.TabIndex = 11;
+            Total.Text = "B";
+            Total.TextAlign = ContentAlignment.MiddleCenter;
+            Total.Visible = false;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.FlatStyle = FlatStyle.Flat;
+            label4.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(932, 65);
+            label4.Name = "label4";
+            label4.Size = new Size(218, 25);
+            label4.TabIndex = 10;
+            label4.Text = "Bultos Restantes:";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            label4.Visible = false;
             // 
             // FACTURA
             // 
@@ -203,7 +285,8 @@
             Ruta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             Ruta.AutoSize = true;
             Ruta.Font = new Font("Verdana", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            Ruta.Location = new Point(940, 0);
+            Ruta.ForeColor = Color.Red;
+            Ruta.Location = new Point(940, -1);
             Ruta.Name = "Ruta";
             Ruta.Size = new Size(106, 32);
             Ruta.TabIndex = 1;
@@ -239,53 +322,28 @@
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Transparent;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.AppWorkspace;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             Grid.DefaultCellStyle = dataGridViewCellStyle2;
             Grid.Dock = DockStyle.Fill;
+            Grid.EditMode = DataGridViewEditMode.EditProgrammatically;
             Grid.Location = new Point(0, 96);
+            Grid.MultiSelect = false;
             Grid.Name = "Grid";
-            Grid.ReadOnly = true;
             Grid.RowHeadersVisible = false;
             Grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             Grid.RowTemplate.Height = 25;
             Grid.Size = new Size(1350, 633);
             Grid.TabIndex = 2;
+            Grid.CellContentClick += Grid_CellContentClick;
+            Grid.CellMouseDown += Grid_CellMouseDown;
+            Grid.CurrentCellChanged += Grid_CurrentCellChanged;
+            Grid.KeyDown += Grid_KeyDown;
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.FlatStyle = FlatStyle.Flat;
-            label4.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(940, 54);
-            label4.Name = "label4";
-            label4.Size = new Size(258, 35);
-            label4.TabIndex = 10;
-            label4.Text = "Bultos Totales:";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
-            label4.Visible = false;
-            // 
-            // Total
-            // 
-            Total.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            Total.AutoSize = true;
-            Total.BackColor = Color.Transparent;
-            Total.FlatStyle = FlatStyle.Flat;
-            Total.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            Total.Location = new Point(1188, 55);
-            Total.Name = "Total";
-            Total.Size = new Size(37, 35);
-            Total.TabIndex = 11;
-            Total.Text = "B";
-            Total.TextAlign = ContentAlignment.MiddleCenter;
-            Total.Visible = false;
             // 
             // Form1
             // 
@@ -298,6 +356,7 @@
             Controls.Add(panel1);
             Cursor = Cursors.Hand;
             Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             Margin = new Padding(5);
             Name = "Form1";
@@ -305,6 +364,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Validar Facturas";
             WindowState = FormWindowState.Maximized;
+            KeyDown += Form1_KeyDown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Grid).EndInit();
@@ -315,7 +375,6 @@
 
         private Label label1;
         private Panel panel1;
-        private DataGridView Grid;
         private Button BTN_CARGAR;
         private OpenFileDialog openFileDialog1;
         private Label Ruta;
@@ -329,5 +388,10 @@
         private Label FACTURA;
         private Label Total;
         private Label label4;
+        public DataGridView Grid;
+        private Label TotalF;
+        private Label label5;
+        private SaveFileDialog saveFileDialog1;
+        private Button CorteBtn;
     }
 }
