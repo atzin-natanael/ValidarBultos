@@ -1433,7 +1433,7 @@ namespace Validar_Bultos
                 }
                 doc.Close();
                 Process.Start(new ProcessStartInfo(file) { UseShellExecute = true });
-                this.Close();
+              //  this.Close();
             }
             else
             {
